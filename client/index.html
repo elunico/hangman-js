@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hangman</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div class="whole">
+    <div id="guess-all-modal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Guess the Phrase</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Enter your guess for the phrase. If you are wrong, you will lose! But if you are right, you win!</p>
+            <input type="text" id="guess-all-in" placeholder="phrase" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick='submitGuessAll()'>Guess</button>
+            <button type="button" class="btn btn-secondary" onclick="modalToggle()" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="image-view" id="barracks">
+      <svg id="drawing">
+      </svg>
+    </div>
+
+    <div class="end-game" id="winner" hidden>
+      <div class="centerer">
+        You Win!
+      </div>
+    </div>
+    <div class="end-game" id="loser" hidden>
+      <div class="centerer">
+        You lost!
+      </div>
+    </div>
+
+    <div class="info">Phrase to Guess: <div id="answer"></div>
+    </div>
+
+    <div tabindex="-1" class="info">Click a letter to guess: </div>
+    <div id="letters">
+      <input type="button" class="btn btn-warning letter" id="a-letter" value="a" />
+      <input type="button" class="btn btn-warning letter" id="b-letter" value="b" />
+      <input type="button" class="btn btn-warning letter" id="c-letter" value="c" />
+      <input type="button" class="btn btn-warning letter" id="d-letter" value="d" />
+      <input type="button" class="btn btn-warning letter" id="e-letter" value="e" />
+      <input type="button" class="btn btn-warning letter" id="f-letter" value="f" />
+      <input type="button" class="btn btn-warning letter" id="g-letter" value="g" />
+      <input type="button" class="btn btn-warning letter" id="h-letter" value="h" />
+      <input type="button" class="btn btn-warning letter" id="i-letter" value="i" />
+      <input type="button" class="btn btn-warning letter" id="j-letter" value="j" />
+      <input type="button" class="btn btn-warning letter" id="k-letter" value="k" />
+      <input type="button" class="btn btn-warning letter" id="l-letter" value="l" />
+      <input type="button" class="btn btn-warning letter" id="m-letter" value="m" />
+      <input type="button" class="btn btn-warning letter" id="n-letter" value="n" />
+      <input type="button" class="btn btn-warning letter" id="o-letter" value="o" />
+      <input type="button" class="btn btn-warning letter" id="p-letter" value="p" />
+      <input type="button" class="btn btn-warning letter" id="q-letter" value="q" />
+      <input type="button" class="btn btn-warning letter" id="r-letter" value="r" />
+      <input type="button" class="btn btn-warning letter" id="s-letter" value="s" />
+      <input type="button" class="btn btn-warning letter" id="t-letter" value="t" />
+      <input type="button" class="btn btn-warning letter" id="u-letter" value="u" />
+      <input type="button" class="btn btn-warning letter" id="v-letter" value="v" />
+      <input type="button" class="btn btn-warning letter" id="w-letter" value="w" />
+      <input type="button" class="btn btn-warning letter" id="x-letter" value="x" />
+      <input type="button" class="btn btn-warning letter" id="y-letter" value="y" />
+      <input type="button" class="btn btn-warning letter" id="z-letter" value="z" />
+    </div>
+    <label style="display: inline;" for="useKeyboardCheckbox">Allow keyboard input?</label>
+    <input type="checkbox" class="info" id="useKeyboardCheckbox" />
+    <div class="button-actions">
+      <!-- <input disabled class="btn btn-primary" type="button" id="guess-btn" value="Guess Letter!" /> -->
+      <input class="btn btn-success" type="button" id="guess-all-btn" data-target="#guess-all-modal" data-toggle="modal"
+        onclick="modalToggle()" value="Guess Entire Phrase!" />
+    </div>
+  </div>
+
+  <script src="hangman-word.js"></script>
+  <script src="index.js"></script>
+
+</body>
+
+</html>

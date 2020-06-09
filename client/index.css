@@ -1,0 +1,157 @@
+:root {
+  --monospace-font: 'Source Code Pro', monospace;
+}
+
+.whole {
+  margin-left: 15vw;
+  margin-right: 15vw;
+  align-items: center;
+}
+
+.whole>* {
+  padding: 1%;
+}
+
+.scales-up {
+  transition: transform 350ms ease-in-out;
+}
+
+.guess {
+  font-family: var(--monospace-font);
+  font-size: 36pt;
+  font-weight: 800;
+  text-align: center;
+  transition: transform 500ms linear, filter 3s linear;
+  color: var(--purple);
+}
+
+.button-actions input {
+  margin: 1%;
+}
+
+#letters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  grid-auto-rows: min-content;
+  gap: 0.5em;
+}
+
+.letter {
+  font-family: var(--monospace-font);
+  font-size: larger;
+  text-transform: capitalize;
+  text-align: center;
+  font-weight: 500;
+}
+
+.clicked {
+  background-color: #aaa !important;
+  border: none !important;
+}
+
+#guess-btn {
+  transition: transform 100ms ease-in-out;
+  transform: scale(0.9);
+}
+
+#guessed-already {
+  display: inline-block;
+  font-family: var(--monospace-font);
+  font-weight: 500;
+  background: #ccc;
+  padding: 2%;
+  transition: transform 300ms ease-in-out;
+}
+
+#barracks {
+  margin-top: 5px;
+  height: 50vh;
+  border: thin black solid;
+}
+
+#drawing {
+  height: 100%;
+  width: 100%;
+}
+
+.end-game {
+  font-size: 4.2vw;
+  font-weight: 500;
+  font-family: var(--monospace-font);
+  margin-top: 5px;
+  height: 50vh;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.centerer {
+  position: relative;
+  top: 50%;
+  text-align: inherit;
+}
+
+#answer {
+  font-family: var(--monospace-font);
+  font-weight: 300;
+  font-size: 4.2vw;
+  letter-spacing: 0.1em;
+  transition: transform 300ms ease-in-out;
+}
+
+#winner {
+  color: var(--green);
+}
+
+#loser {
+  color: var(--red);
+}
+
+@media screen and (max-width: 1400px) {
+  .whole {
+    margin-left: 20vw;
+    margin-right: 20vw;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .whole {
+    margin-left: 14vw;
+    margin-right: 14vw;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .whole {
+    margin-left: 8vw;
+    margin-right: 8vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .whole {
+    margin-left: 6vw;
+    margin-right: 6vw;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .whole {
+    margin-left: 3vw;
+    margin-right: 3vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #answer {
+    font-family: var(--monospace-font);
+    font-weight: 400;
+    font-size: 21pt;
+    letter-spacing: 0.08em;
+  }
+  .eng-game {
+    font-size: 21pt;
+    font-weight: 500;
+    font-family: var(--monospace-font);
+  }
+}
