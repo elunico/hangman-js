@@ -3,8 +3,8 @@
 }
 
 .whole {
-  margin-left: 15vw;
-  margin-right: 15vw;
+  margin-left: 18vw;
+  margin-right: 18vw;
   align-items: center;
 }
 
@@ -29,24 +29,57 @@
   margin: 1%;
 }
 
+.title {
+  text-shadow: 2px -3px 2px gray;
+  font-size: 10vh;
+  font-weight: 300;
+  font-style: italic;
+  float: left;
+  margin: 2% calc(-10vh - 1rem);
+  /*
+  keep both rules so if browser doesnt support @support or
+  vertical-lr we get sideways but if it can support @supports
+  we get a identical looking thing and if it just has sideways
+  it works normally
+  */
+  writing-mode: vertical-lr;
+  writing-mode: sideways-lr;
+}
+
+@supports not (writing-mode: sideways-lr) {
+  /*
+  Browsers that do not support @support will still use the above rule
+  but if they do not support sideways-lr the text will be flipped
+  */
+  .title {
+    float: left;
+    margin: 2% calc(-10vh - 1rem);
+    transform: rotate(180deg);
+    writing-mode: vertical-lr;
+  }
+}
+
 #letters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
   grid-auto-rows: min-content;
-  gap: 0.5em;
+  gap: 0.6em;
 }
 
 .letter {
+  box-shadow: 4px 2px 1px lightgray;
   font-family: var(--monospace-font);
   font-size: larger;
   text-transform: capitalize;
   text-align: center;
   font-weight: 500;
+  transition: transform 100ms linear;
 }
 
 .clicked {
   background-color: #aaa !important;
   border: none !important;
+  box-shadow: none !important;
 }
 
 #guess-btn {
@@ -107,24 +140,35 @@
   color: var(--red);
 }
 
+@media screen and (min-width: 1400px) {
+  .whole {
+    margin-left: 27vw;
+    margin-right: 27vw;
+  }
+}
+
 @media screen and (max-width: 1400px) {
   .whole {
-    margin-left: 20vw;
-    margin-right: 20vw;
+    margin-left: 22vw;
+    margin-right: 22vw;
   }
 }
 
 @media screen and (max-width: 1000px) {
   .whole {
-    margin-left: 14vw;
-    margin-right: 14vw;
+    margin-left: 18vw;
+    margin-right: 18vw;
   }
 }
 
 @media screen and (max-width: 800px) {
   .whole {
-    margin-left: 8vw;
-    margin-right: 8vw;
+    margin-left: 12vw;
+    margin-right: 12vw;
+  }
+  .title {
+    font-size: 8vh;
+    margin: 2% calc(-8vh - 1rem);
   }
 }
 
@@ -133,12 +177,32 @@
     margin-left: 6vw;
     margin-right: 6vw;
   }
+  .title {
+    /* too narrow for sideways title */
+    display: block;
+    transform: none;
+    writing-mode: initial;
+    float: initial;
+    margin: auto;
+    font-size: 19vw;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 400px) {
   .whole {
     margin-left: 3vw;
     margin-right: 3vw;
+  }
+  .title {
+    /* too narrow for sideways title */
+    display: block;
+    transform: none;
+    writing-mode: initial;
+    float: initial;
+    margin: auto;
+    font-size: 19vw;
+    text-align: center;
   }
 }
 
