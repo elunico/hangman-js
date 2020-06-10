@@ -6,7 +6,7 @@ function attrStroke(elt) {
   elt.setAttribute('stroke', 'black');
   elt.setAttribute('stroke-width', '5');
   elt.setAttribute('fill', '#fff');
-  elt.style.transform = 'translate(-1000px, 0px)';
+  elt.style.transform = 'translate(-2500px, 0px)';
   elt.classList.add('scales-up');
 }
 
@@ -97,32 +97,32 @@ class HangmanWord {
     circle.setAttribute('cy', `${bounds.height / 2 - bounds.height / 4}px`);
     circle.setAttribute('r', `${bounds.height / 15}px`);
     attrStroke(circle);
-    circle.style.transform = 'translate(0px, -100vh)';
+    circle.style.transform = 'translate(0px, -200vh)';
     this.barracksContainer.appendChild(circle);
     this.body.push(circle);
 
     let bod = svgLine(bodyX, bodyY, bodyX, bodyY + bodyHeight);
-    bod.style.transform = 'translate(0px, 100vh)';
+    bod.style.transform = 'translate(0px, 200vh)';
     this.barracksContainer.appendChild(bod);
     this.body.push(bod);
 
     let leftArm = svgLine(bodyX, bodyY, bodyX - bounds.height / 8, bodyY + bounds.height / 12);
-    leftArm.style.transform = 'translate(-100vh, 0px)';
+    leftArm.style.transform = 'translate(-200vw, 0px)';
     this.barracksContainer.appendChild(leftArm);
     this.body.push(leftArm);
 
     let rightArm = svgLine(bodyX, bodyY, bodyX + bounds.height / 8, bodyY + bounds.height / 12);
-    rightArm.style.transform = 'translate(100vh, 0px)';
+    rightArm.style.transform = 'translate(200vw, 0px)';
     this.barracksContainer.appendChild(rightArm);
     this.body.push(rightArm);
 
     let leftLeg = svgLine(bodyX, bodyY + bodyHeight, bodyX - bounds.height / 8, bodyY + bounds.height / 12 + bodyHeight);
-    leftLeg.style.transform = 'translate(-100vh, 0px)';
+    leftLeg.style.transform = 'translate(-200vw, 0px)';
     this.barracksContainer.appendChild(leftLeg);
     this.body.push(leftLeg);
 
     let rightLeg = svgLine(bodyX, bodyY + bodyHeight, bodyX + bounds.height / 8, bodyY + bounds.height / 12 + bodyHeight);
-    rightLeg.style.transform = 'translate(100vh, 0px)';
+    rightLeg.style.transform = 'translate(200vw, 0px)';
     this.barracksContainer.appendChild(rightLeg);
     this.body.push(rightLeg);
   }
